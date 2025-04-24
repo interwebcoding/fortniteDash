@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import './App.css';
 import AddPlayerForm from './components/AddPlayerForm';
 import PlayerCard from './components/PlayerCard';
@@ -83,6 +83,32 @@ function App() {
     const seconds = Math.floor(remainder / 1000);
     countdown = { days, hours, minutes, seconds };
   }
+  // Full days remaining in season
+  const daysRemaining = countdown.days;
+
+  // Sorting state: metric key or null for no sort
+  const [sortKey, setSortKey] = useState<string | null>(null);
+  // Sort players by selected metric (descending)
+  const sortedPlayers = useMemo(() => {
+    if (!sortKey) return players;
+    // clone array to avoid mutating state
+    return [...players].sort((a, b) => {
+      const getVal = (p: any) => {
+        switch (sortKey) {
+          case 'level': return p.stats.level;
+          case 'wins': return p.stats.wins;
+          case 'winRate': return p.stats.winRate;
+          case 'matches': return p.stats.matches;
+          case 'kd': return p.stats.kd;
+          case 'killsPerMatch': return p.stats.killsPerMatch;
+          case 'kills': return p.stats.kills;
+          case 'perDay': return daysRemaining > 0 ? (200 - p.stats.level) / daysRemaining : 0;
+          default: return 0;
+        }
+      };
+      return getVal(b) - getVal(a);
+    });
+  }, [players, sortKey, daysRemaining]);
 
   const handleAdd = async (username: string, platform: Platform) => {
     setAddError(null);
@@ -164,13 +190,14 @@ function App() {
       {loading ? (
         <p>Loading...</p>
       ) : (
-        players.map(p => (
+        sortedPlayers.map(p => (
           <PlayerCard
             key={p.id}
             player={p}
             onRemove={handleRemove}
-            daysRemaining={countdown.days}
+            daysRemaining={daysRemaining}
             theme={theme}
+            onSort={setSortKey}
           />
         ))
       )}
