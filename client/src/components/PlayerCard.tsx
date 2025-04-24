@@ -25,7 +25,10 @@ const PlayerCard: React.FC<PlayerCardProps> = ({ player, onRemove, daysRemaining
     padding: '1rem',
     marginBottom: '1rem',
     position: 'relative',
-    backgroundColor: theme === 'dark' ? '#2a2a2a' : '#fff',
+    // 30% transparent background for player cards
+    backgroundColor: theme === 'dark'
+      ? 'rgba(42, 42, 42, 0.7)'
+      : 'rgba(255, 255, 255, 0.7)',
   };
   return (
     <div style={cardStyle}>
