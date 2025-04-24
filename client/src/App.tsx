@@ -174,14 +174,16 @@ function App() {
       </button>
       {/* Season header with days remaining and optional percent complete */}
       {seasonInfo && (
-        <div style={{ marginBottom: '1rem' }}>
-          <p style={{ fontSize: '1.25rem', margin: '0' }}>
-            {seasonInfo.name}{' '}
+        <div className="season-banner">
+          <div>
+            {seasonInfo.name}
             {seasonInfo.percentComplete != null && (
-              <>is {seasonInfo.percentComplete}% complete. </>
+              <> is {seasonInfo.percentComplete}% complete.</>
             )}
+          </div>
+          <div>
             Time remaining: {countdown.days}d {countdown.hours}h {countdown.minutes}m {countdown.seconds}s.
-          </p>
+          </div>
         </div>
       )}
       <h1>Fortnite Dashboard</h1>
