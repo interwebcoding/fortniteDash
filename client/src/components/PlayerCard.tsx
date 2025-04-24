@@ -46,7 +46,7 @@ const PlayerCard: React.FC<PlayerCardProps> = ({ player, onRemove, daysRemaining
         )}
       </h2>
       <p>Level: {stats.level}</p>
-      <p><strong>Levels/Day to 200:</strong> {perDay.toFixed(2)}</p>
+      
       <div style={{ display: 'flex', flexWrap: 'wrap' }}>
         <div style={{ flex: '1', minWidth: '120px' }}>
           <p><strong>Wins:</strong> {stats.wins}</p>
@@ -61,6 +61,7 @@ const PlayerCard: React.FC<PlayerCardProps> = ({ player, onRemove, daysRemaining
         <div style={{ flex: '1', minWidth: '120px' }}>
           <p><strong>Play Time:</strong> {stats.playTime}</p>
           <p><strong>Avg Match Time:</strong> {stats.avgMatchTime}</p>
+          <p><strong>Levels/Day to 200:</strong> {perDay.toFixed(2)}</p>
         </div>
       </div>
     </div>

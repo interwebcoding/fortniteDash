@@ -118,8 +118,17 @@ function App() {
   };
 
   const toggleTheme = () => setTheme(prev => (prev === 'light' ? 'dark' : 'light'));
+  // Container style: background image with translucent overlay via CSS background-color
+  const containerStyle: React.CSSProperties = {
+    padding: '1rem',
+    backgroundImage: 'url(/media/background.png)',
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat',
+    minHeight: '100vh',
+  };
   return (
-    <div className={`App ${theme}`} style={{ padding: '1rem' }}>
+    <div className={`App ${theme}`} style={containerStyle}>
       {/* Theme toggle button */}
       <button
         onClick={toggleTheme}

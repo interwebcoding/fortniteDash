@@ -47,10 +47,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 /* Light and dark theme styles */
 .App.light {
-  background-color: #f5f5f5;
+  background-color: rgba(245, 245, 245, 0.75);
   color: #000;
 }
 .App.dark {
-  background-color: #121212;
+  background-color: rgba(18, 18, 18, 0.75);
   color: #fff;
 }
