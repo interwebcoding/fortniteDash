@@ -28,8 +28,8 @@
  # Create .env for server
  # Replace with your own API key and season dates
  cat << EOF > server/.env
- FNAPI_KEY=abff7900-5d96-43e5-84be-45e99386a46d
- SEASON_NAME="Chapter 4 Season 2"
+ FNAPI_KEY=<KEY>
+ SEASON_NAME="Chapter 6 Season 2"
  SEASON_START_DATE="2024-02-10T16:00:00.000Z"
  SEASON_END_DATE="2024-05-04T23:00:00.000Z"
  EOF
