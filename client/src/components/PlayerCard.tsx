@@ -8,9 +8,11 @@ interface PlayerCardProps {
   daysRemaining: number;
   /** Current theme mode */
   theme: 'light' | 'dark';
+  /** Sort callback: pass metric key to sort by */
+  onSort: (key: string) => void;
 }
 
-const PlayerCard: React.FC<PlayerCardProps> = ({ player, onRemove, daysRemaining, theme }) => {
+const PlayerCard: React.FC<PlayerCardProps> = ({ player, onRemove, daysRemaining, theme, onSort }) => {
   const { id, username, platform, stats } = player;
   // Calculate levels per day to reach level 200
   const levelsLeft = Math.max(200 - stats.level, 0);
@@ -28,12 +30,18 @@ const PlayerCard: React.FC<PlayerCardProps> = ({ player, onRemove, daysRemaining
     <div style={cardStyle}>
       <button
         onClick={() => onRemove(id)}
+        aria-label="Remove player"
         style={{
           position: 'absolute',
           top: '8px',
           right: '8px',
-          background: 'transparent',
+          backgroundColor: '#ff4d4f',
+          color: '#ffffff',
           border: 'none',
+          borderRadius: '4px',
+          padding: '0.25rem 0.5rem',
+          fontSize: '1rem',
+          lineHeight: 1,
           cursor: 'pointer'
         }}
       >
@@ -45,23 +53,64 @@ const PlayerCard: React.FC<PlayerCardProps> = ({ player, onRemove, daysRemaining
           <> ({platform.toUpperCase()})</>
         )}
       </h2>
-      <p>Level: {stats.level}</p>
+      <p>
+        <h3><strong
+          style={{ cursor: 'pointer' }}
+          onClick={() => onSort('level')}
+        >Level:</strong> {stats.level}
+        </h3>
+      </p>
       
       <div style={{ display: 'flex', flexWrap: 'wrap' }}>
         <div style={{ flex: '1', minWidth: '120px' }}>
-          <p><strong>Wins:</strong> {stats.wins}</p>
-          <p><strong>Win Rate:</strong> {stats.winRate}%</p>
-          <p><strong>Matches:</strong> {stats.matches}</p>
+          <p>
+            <strong
+              style={{ cursor: 'pointer' }}
+              onClick={() => onSort('wins')}
+            >Wins:</strong> {stats.wins}
+          </p>
+          <p>
+            <strong
+              style={{ cursor: 'pointer' }}
+              onClick={() => onSort('winRate')}
+            >Win Rate:</strong> {stats.winRate}%
+          </p>
+          <p>
+            <strong
+              style={{ cursor: 'pointer' }}
+              onClick={() => onSort('matches')}
+            >Matches:</strong> {stats.matches}
+          </p>
         </div>
         <div style={{ flex: '1', minWidth: '120px' }}>
-          <p><strong>K/D:</strong> {stats.kd}</p>
-          <p><strong>Kills/Match:</strong> {stats.killsPerMatch}</p>
-          <p><strong>Total Kills:</strong> {stats.kills}</p>
+          <p>
+            <strong
+              style={{ cursor: 'pointer' }}
+              onClick={() => onSort('kd')}
+            >K/D:</strong> {stats.kd}
+          </p>
+          <p>
+            <strong
+              style={{ cursor: 'pointer' }}
+              onClick={() => onSort('killsPerMatch')}
+            >Kills/Match:</strong> {stats.killsPerMatch}
+          </p>
+          <p>
+            <strong
+              style={{ cursor: 'pointer' }}
+              onClick={() => onSort('kills')}
+            >Total Kills:</strong> {stats.kills}
+          </p>
         </div>
         <div style={{ flex: '1', minWidth: '120px' }}>
           <p><strong>Play Time:</strong> {stats.playTime}</p>
           <p><strong>Avg Match Time:</strong> {stats.avgMatchTime}</p>
-          <p><strong>Levels/Day to 200:</strong> {perDay.toFixed(2)}</p>
+          <p>
+            <strong
+              style={{ cursor: 'pointer' }}
+              onClick={() => onSort('perDay')}
+            >Levels/Day to 200:</strong> {perDay.toFixed(2)}
+          </p>
         </div>
       </div>
     </div>
