@@ -9,7 +9,7 @@ services:
     env_file:
       - ./server/.env
     ports:
-      - '3001:3001'
+      - '4201:3001'
     networks:
       - fortnitedash-network
 
@@ -21,7 +21,7 @@ services:
     depends_on:
       - server
     ports:
-      - '3000:80'
+      - '4200:80'
     networks:
       - fortnitedash-network
 
