@@ -50,3 +50,20 @@
  ## License
  
  MIT
+
+## Docker Setup
+
+Make sure you have Docker and Docker Compose installed, then from the project root:
+
+```bash
+# Ensure your server environment variables are set in server/.env
+docker-compose up -d --build
+```
+
+Your frontend will be available at http://localhost:3000 (or host IP:3000), and the API at http://localhost:3001.
+
+To stop and remove containers:
+
+```bash
+docker-compose down
+```
