@@ -9,10 +9,11 @@ interface PlayerCardProps {
   /** Current theme mode */
   theme: 'light' | 'dark';
   /** Sort callback: pass metric key to sort by */
-  onSort: (key: string) => void;
+  /** Sort callback: pass metric key to sort by */
+  onSort?: (key: string) => void;
 }
 
-const PlayerCard: React.FC<PlayerCardProps> = ({ player, onRemove, daysRemaining, theme, onSort }) => {
+const PlayerCard: React.FC<PlayerCardProps> = ({ player, onRemove, daysRemaining, theme, onSort = () => {} }) => {
   const { id, username, platform, stats } = player;
   // Calculate levels per day to reach level 200
   const levelsLeft = Math.max(200 - stats.level, 0);
