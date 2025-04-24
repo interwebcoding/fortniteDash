@@ -1,0 +1,13 @@
+## Server
+server/node_modules
+server/dist
+
+## Environment
+.env
+server/.env
+
+## Editor
+*.log
+node_modules
+dist
+coverage
