@@ -11,6 +11,9 @@ function App() {
   const [seasonInfo, setSeasonInfo] = useState<SeasonInfo | null>(null);
   // Theme state: default to dark mode
   const [theme, setTheme] = useState<'light' | 'dark'>('dark');
+  // Easter egg: count theme toggles
+  const [toggleCount, setToggleCount] = useState<number>(0);
+  const [showEgg, setShowEgg] = useState<boolean>(false);
 
   const fetchPlayers = async () => {
     setLoading(true);
@@ -143,7 +146,22 @@ function App() {
     }
   };
 
-  const toggleTheme = () => setTheme(prev => (prev === 'light' ? 'dark' : 'light'));
+  const toggleTheme = () => {
+    setTheme(prev => (prev === 'light' ? 'dark' : 'light'));
+    setToggleCount(prevCount => {
+      const nextCount = prevCount + 1;
+      if (nextCount === 21) {
+        setShowEgg(true);
+      }
+      return nextCount;
+    });
+  };
+  // When egg unlocked, scroll to bottom
+  useEffect(() => {
+    if (showEgg) {
+      window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+    }
+  }, [showEgg]);
   // Container style: background image with translucent overlay via CSS background-color
   const containerStyle: React.CSSProperties = {
     padding: '1rem',
@@ -203,6 +221,22 @@ function App() {
           />
         ))
       )}
+      <footer className="App-footer">
+        <div>Creator Code: SatoshiFTW</div>
+        {showEgg && (
+          <a
+            className="egg-button"
+            href="https://youtu.be/dQw4w9WgXcQ"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Click Me
+          </a>
+        )}
+        <div>
+          hosted by: <a href="https://www.interwebcoding.com" target="_blank" rel="noopener noreferrer">interwebcoding.com</a>
+        </div>
+      </footer>
     </div>
   );
 }

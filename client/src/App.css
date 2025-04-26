@@ -18,6 +18,7 @@ h1, h2, h3, h4, h5, h6 {
 /* Make main dashboard title roughly twice as large */
 h1 {
   font-size: 4rem;
+  color: #fbc203;
 }
 .App {
   text-align: center;
@@ -87,8 +88,53 @@ h1 {
   background-color: rgba(42, 42, 42, 0.7);
   color: #fff;
 }
-.App.light .season-banner {
+ .App.light .season-banner {
   background-color: rgba(255, 255, 255, 0.7);
   color: #000;
+}
+
+/* Footer styling */
+.App-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0rem;
+  font-size: 0.875rem;
+}
+.App.light .App-footer {
+  background-color: rgba(245, 245, 245, 0.75);
+  color: #000;
+}
+.App.dark .App-footer {
+  background-color: rgba(18, 18, 18, 0.75);
+  color: #fff;
+}
+
+/* Easter egg button (Click Me) */
+.App-footer .egg-button {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0.5rem 1rem;
+  background-color: #9146FF;
+  color: #000;
+  border: none;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: 600;
+  cursor: pointer;
+}
+/* Footer link (hosted by) default & pressed color */
+.App-footer a {
+  color: #fff;
+}
+.App-footer a:visited,
+.App-footer a:hover,
+.App-footer a:active {
+  color: #fff;
 }
 
