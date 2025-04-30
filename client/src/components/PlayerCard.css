@@ -1,0 +1,152 @@
+/* Styling for the PlayerCard component to match improved player stats design */
+.player-card {
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 3rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  font-family: 'Open Sans', sans-serif;
+}
+/* Theme variants: transparent card background and border */
+.player-card.light {
+  background-color: rgba(255, 255, 255, 0.7);
+  border: 1px solid #ccc;
+}
+.player-card.dark {
+  background-color: rgba(42, 42, 42, 0.7);
+  border: 1px solid #444;
+}
+
+.remove-button {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background-color: #ff4d4f;
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  padding: 0.25rem 0.5rem;
+  font-size: 1rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.player-name {
+  margin: 0;
+  padding: 1rem;
+  font-size: 2.25rem;
+  font-weight: bold;
+  /* inherit color from theme, adjust if needed */
+}
+/* Light theme header text on lighter background */
+.player-card.light .player-name {
+  color: #000;
+}
+/* Dark theme header text on darker background */
+.player-card.dark .player-name {
+  color: #fff;
+}
+
+.player-level {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 1rem 1rem;
+}
+
+.player-level .level-label {
+  margin-right: 0.5rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 1rem;
+  opacity: 0.7;
+  cursor: pointer;
+}
+
+.player-level .level-value {
+  font-family: 'Burbank Big Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 1.3rem;
+  color:#ffffff
+}
+
+.stat-row {
+  display: flex;
+  align-items: center;
+}
+
+.stat-row + .stat-row {
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.row-icon {
+  flex: 0 0 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  color: #ffffff;
+  padding: 0 1rem 1rem;
+
+}
+
+.stat-items {
+  flex: 1;
+  display: flex;
+}
+
+.stat-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem 0;
+  cursor: pointer;
+}
+
+.stat-item + .stat-item {
+  border-left: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.stat-value {
+  font-family: 'Burbank', sans-serif;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+.stat-label {
+  margin-top: 0.25rem;
+  font-size: 0.75rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  opacity: 0.8;
+  color: #ffffff;
+}
+
+.row-1 {
+  background-color: #1e2a5fb6;
+}
+
+.row-1 .row-icon,
+.row-1 .stat-label {
+  color: #4AC0FF;
+}
+
+.row-2 {
+  background-color: #4a2b7fb6;
+}
+
+.row-2 .row-icon,
+.row-2 .stat-label {
+  color: #C468FF;
+}
+
+.row-3 {
+  background-color: #1b7e1bb6;
+}
+
+.row-3 .row-icon,
+.row-3 .stat-label {
+  color: #6cff5e;
+}

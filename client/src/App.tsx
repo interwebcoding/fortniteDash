@@ -171,6 +171,8 @@ function App() {
     backgroundRepeat: 'no-repeat',
     minHeight: '100vh',
   };
+  // Helper to pad numbers to two digits
+  const pad2 = (n: number) => n.toString().padStart(2, '0');
   return (
     <div className={`App ${theme}`} style={containerStyle}>
       {/* Theme toggle button */}
@@ -190,17 +192,42 @@ function App() {
       >
         {theme === 'light' ? 'Dark Mode' : 'Light Mode'}
       </button>
-      {/* Season header with days remaining and optional percent complete */}
+      {/* Season header with progress bar and countdown styling */}
       {seasonInfo && (
         <div className="season-banner">
-          <div>
-            {seasonInfo.name}
-            {seasonInfo.percentComplete != null && (
-              <> is {seasonInfo.percentComplete}% complete.</>
-            )}
+          <div className="season-banner-heading">
+            {seasonInfo.name} is{' '}
+            <span className="season-banner-highlight">
+              {seasonInfo.percentComplete}%
+            </span>{' '}
+            complete. There are{' '}
+            <span className="season-banner-highlight">
+              {countdown.days}
+            </span>{' '}
+            days remaining.
           </div>
-          <div>
-            Time remaining: {countdown.days}d {countdown.hours}h {countdown.minutes}m {countdown.seconds}s.
+          <div className="season-progress-bar">
+            <div
+              className="season-progress-bar-fill"
+              style={{ width: `${seasonInfo.percentComplete}%` }}
+            />
+          </div>
+          <div className="season-countdown">
+            <span className="cd-number">
+              {pad2(countdown.days)}
+            </span>
+            <span className="cd-sep">:</span>
+            <span className="cd-number">
+              {pad2(countdown.hours)}
+            </span>
+            <span className="cd-sep">:</span>
+            <span className="cd-number">
+              {pad2(countdown.minutes)}
+            </span>
+            <span className="cd-sep">:</span>
+            <span className="cd-number">
+              {pad2(countdown.seconds)}
+            </span>
           </div>
         </div>
       )}

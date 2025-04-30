@@ -1,5 +1,6 @@
 import React from 'react';
 import { PlayerWithStats } from '../types';
+import './PlayerCard.css';
 
 interface PlayerCardProps {
   player: PlayerWithStats;
@@ -18,103 +19,83 @@ const PlayerCard: React.FC<PlayerCardProps> = ({ player, onRemove, daysRemaining
   // Calculate levels per day to reach level 200
   const levelsLeft = Math.max(200 - stats.level, 0);
   const perDay = daysRemaining > 0 ? levelsLeft / daysRemaining : 0;
-  // Dynamic styles based on theme
-  const cardStyle: React.CSSProperties = {
-    border: `1px solid ${theme === 'dark' ? '#444' : '#ccc'}`,
-    borderRadius: '8px',
-    padding: '1rem',
-    marginBottom: '1rem',
-    position: 'relative',
-    // 30% transparent background for player cards
-    backgroundColor: theme === 'dark'
-      ? 'rgba(42, 42, 42, 0.7)'
-      : 'rgba(255, 255, 255, 0.7)',
-  };
   return (
-    <div style={cardStyle}>
+    <div className={`player-card ${theme}`}>
       <button
+        className="remove-button"
         onClick={() => onRemove(id)}
         aria-label="Remove player"
-        style={{
-          position: 'absolute',
-          top: '8px',
-          right: '8px',
-          backgroundColor: '#ff4d4f',
-          color: '#ffffff',
-          border: 'none',
-          borderRadius: '4px',
-          padding: '0.25rem 0.5rem',
-          fontSize: '1rem',
-          lineHeight: 1,
-          cursor: 'pointer'
-        }}
       >
         ×
       </button>
-      <h2>
+      <h2 className="player-name">
         {username}
-        {platform && (
-          <> ({platform.toUpperCase()})</>
-        )}
+        {platform && ` (${platform.toUpperCase()})`}
       </h2>
-      <p>
-        <h3><strong
-          style={{ cursor: 'pointer' }}
+      <div className="player-level">
+        <span
+          className="level-label"
           onClick={() => onSort('level')}
-        >Level:</strong> {stats.level}
-        </h3>
-      </p>
-      
-      <div style={{ display: 'flex', flexWrap: 'wrap' }}>
-        <div style={{ flex: '1', minWidth: '120px' }}>
-          <p>
-            <strong
-              style={{ cursor: 'pointer' }}
-              onClick={() => onSort('wins')}
-            >Wins:</strong> {stats.wins}
-          </p>
-          <p>
-            <strong
-              style={{ cursor: 'pointer' }}
-              onClick={() => onSort('winRate')}
-            >Win Rate:</strong> {stats.winRate}%
-          </p>
-          <p>
-            <strong
-              style={{ cursor: 'pointer' }}
-              onClick={() => onSort('matches')}
-            >Matches:</strong> {stats.matches}
-          </p>
+        >
+          LEVEL
+        </span>
+        <span className="level-value">{stats.level}</span>
+      </div>
+      <div className="stat-row row-1">
+        <div className="row-icon" onClick={() => onSort('wins')}>
+          <i className="fas fa-trophy"></i>
         </div>
-        <div style={{ flex: '1', minWidth: '120px' }}>
-          <p>
-            <strong
-              style={{ cursor: 'pointer' }}
-              onClick={() => onSort('kd')}
-            >K/D:</strong> {stats.kd}
-          </p>
-          <p>
-            <strong
-              style={{ cursor: 'pointer' }}
-              onClick={() => onSort('killsPerMatch')}
-            >Kills/Match:</strong> {stats.killsPerMatch}
-          </p>
-          <p>
-            <strong
-              style={{ cursor: 'pointer' }}
-              onClick={() => onSort('kills')}
-            >Total Kills:</strong> {stats.kills}
-          </p>
+        <div className="stat-items">
+          <div className="stat-item" onClick={() => onSort('wins')}>
+            <div className="stat-value">{stats.wins}</div>
+            <div className="stat-label">WINS</div>
+          </div>
+          <div className="stat-item" onClick={() => onSort('winRate')}>
+            <div className="stat-value">{stats.winRate}%</div>
+            <div className="stat-label">WIN RATE</div>
+          </div>
+          <div className="stat-item" onClick={() => onSort('matches')}>
+            <div className="stat-value">{stats.matches}</div>
+            <div className="stat-label">MATCHES</div>
+          </div>
         </div>
-        <div style={{ flex: '1', minWidth: '120px' }}>
-          <p><strong>Play Time:</strong> {stats.playTime}</p>
-          <p><strong>Avg Match Time:</strong> {stats.avgMatchTime}</p>
-          <p>
-            <strong
-              style={{ cursor: 'pointer' }}
-              onClick={() => onSort('perDay')}
-            >Levels/Day to 200:</strong> {perDay.toFixed(2)}
-          </p>
+      </div>
+      <div className="stat-row row-2">
+        <div className="row-icon" onClick={() => onSort('kd')}>
+          <i className="fas fa-crosshairs"></i>
+        </div>
+        <div className="stat-items">
+          <div className="stat-item" onClick={() => onSort('kd')}>
+            <div className="stat-value">{stats.kd.toFixed(2)}</div>
+            <div className="stat-label">K/D</div>
+          </div>
+          <div className="stat-item" onClick={() => onSort('killsPerMatch')}>
+            <div className="stat-value">{stats.killsPerMatch.toFixed(1)}</div>
+            <div className="stat-label">KILLS/MATCH</div>
+          </div>
+          <div className="stat-item" onClick={() => onSort('kills')}>
+            <div className="stat-value">{stats.kills}</div>
+            <div className="stat-label">KILLS</div>
+          </div>
+        </div>
+      </div>
+      <div className="stat-row row-3">
+        <div className="row-icon">
+          <i className="fas fa-stopwatch"></i>
+        </div>
+        <div className="stat-items">
+          <div className="stat-item">
+            <div className="stat-value">{stats.playTime}</div>
+            <div className="stat-label">PLAY TIME</div>
+          </div>
+          <div className="stat-item">
+            <div className="stat-value">{stats.avgMatchTime}</div>
+            <div className="stat-label">AVG MATCH TIME</div>
+          </div>
+          <div className="stat-item" onClick={() => onSort('perDay')}>
+            <div className="stat-value">{perDay.toFixed(2)}</div>
+            <div className="stat-label">LVLS/DAY</div>
+          </div>
         </div>
       </div>
     </div>
