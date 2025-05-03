@@ -2,6 +2,8 @@ import NodeCache from 'node-cache';
 import { Client, Language } from 'fnapicom';
 import { Stats, Platform } from '../models/player';
 
+//**BUG** There is a season change bug, that once a new season starts, if a player is listed in the data/players.json file, that has no player data yet for that season - the call or this statsService breaks.  To fix manually, just clear out the players in the player.json files and only insert players that has data.  This bug needs to be fixed though.
+
 // Cache stats for 5 minutes
 const cache = new NodeCache({ stdTTL: 300 });
 
