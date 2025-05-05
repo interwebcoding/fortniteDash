@@ -162,19 +162,10 @@ function App() {
       window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
     }
   }, [showEgg]);
-  // Container style: background image with translucent overlay via CSS background-color
-  const containerStyle: React.CSSProperties = {
-    padding: '1rem',
-    backgroundImage: 'url(/media/background.png)',
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-    backgroundRepeat: 'no-repeat',
-    minHeight: '100vh',
-  };
   // Helper to pad numbers to two digits
   const pad2 = (n: number) => n.toString().padStart(2, '0');
   return (
-    <div className={`App ${theme}`} style={containerStyle}>
+    <div className={`App ${theme}`}>
       {/* Theme toggle button */}
       <button
         onClick={toggleTheme}

@@ -23,6 +23,14 @@ h1 {
 }
 .App {
   text-align: center;
+  padding: 1rem;
+  background-image: url('./media/background.webp');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  /* Fixed attachment for parallax-like effect */
+  background-attachment: fixed;
+  min-height: 100vh;
 }
 
 .App-logo {
@@ -177,5 +185,30 @@ h1 {
 .App-footer a:hover,
 .App-footer a:active {
   color: #fff;
+}
+
+/* Responsive background image adjustments and device-specific backgrounds */
+@media (max-width: 1200px) {
+  .App {
+    background-position: center 35%;
+  }
+}
+@media (max-width: 768px) {
+  .App {
+    /* Tablet-optimized background */
+    background-image: url('./media/background-tablet.webp');
+    background-position: center 40%;
+    min-height: 80vh;
+  }
+}
+@media (max-width: 576px) {
+  .App {
+    /* Mobile-optimized background */
+    background-image: url('./media/background-mobile.webp');
+    background-position: center 50%;
+    min-height: 90vh;
+    /* Override fixed background attachment on mobile for performance */
+    background-attachment: scroll;
+  }
 }
 
