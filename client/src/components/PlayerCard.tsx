@@ -16,8 +16,12 @@ interface PlayerCardProps {
 
 const PlayerCard: React.FC<PlayerCardProps> = ({ player, onRemove, daysRemaining, theme, onSort = () => {} }) => {
   const { id, username, platform, stats } = player;
-  // Calculate levels per day to reach level 200
-  const levelsLeft = Math.max(200 - stats.level, 0);
+const targetLevel = process.env.REACT_APP_TARGET_LEVEL || 70; // Fallback to 70 if undefined
+  // Calculate levels per day to reach level 70
+  console.log('targetLevel:', targetLevel); // <-- Add this line
+  const levelsLeft = Math.max(Number(targetLevel) - stats.level, 0);
+  console.log('levelsLeft:', levelsLeft); // <-- Add this line
+
   const perDay = daysRemaining > 0 ? levelsLeft / daysRemaining : 0;
   return (
     <div className={`player-card ${theme}`}>
