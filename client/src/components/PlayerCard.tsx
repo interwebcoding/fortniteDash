@@ -39,7 +39,7 @@ const { id, username, platform, stats } = player;
           className="level-label"
           onClick={() => onSort('level')}
         >
-          LEVEL
+          CURRENT LEVEL
         </span>
         <span className="level-value">{stats.level}</span>
       </div>
